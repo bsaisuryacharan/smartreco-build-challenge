@@ -1,5 +1,7 @@
 # SmartReco — Behavioral AI Recommendation Platform
 
+> SmartReco Build Challenge 2026 submission.
+
 A full-stack learning platform that watches user behavior and generates personalized, persuasive course recommendations using a **LangGraph agentic RAG pipeline**.
 
 ---
