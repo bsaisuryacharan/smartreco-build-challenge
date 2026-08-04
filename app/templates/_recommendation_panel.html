@@ -1,0 +1,23 @@
+<div class="rec-panel">
+  <div class="rec-panel-title">✦ Recommended for You</div>
+  <div id="rec-narrative" class="narrative-text rec-loading">
+    {% if latest_rec %}
+      {{ latest_rec.narrative }}
+    {% else %}
+      Browse courses to unlock personalized recommendations…
+    {% endif %}
+  </div>
+  <div id="rec-products">
+    {% if rec_products %}
+      {% for p in rec_products %}
+        <div class="rec-product-card" data-product-id="{{ p.id }}" data-category="{{ p.category }}">
+          <a href="/product/{{ p.id }}">{{ p.title }}</a>
+          <div class="rec-product-meta">
+            <span class="badge">{{ p.category }}</span>
+            <span class="price">${{ "%.2f"|format(p.price) }}</span>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>

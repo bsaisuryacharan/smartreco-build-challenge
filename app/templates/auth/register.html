@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Create Account — SmartReco{% endblock %}
+{% block content %}
+<div class="form-card">
+  <div class="form-title">Create your account</div>
+  {% if error %}
+    <div class="form-error">{{ error }}</div>
+  {% endif %}
+  <form method="post" action="/register">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" type="email" name="email" required placeholder="you@example.com" />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input id="password" type="password" name="password" required placeholder="Min 6 characters" />
+    </div>
+    <div class="form-group">
+      <label for="confirm_password">Confirm Password</label>
+      <input id="confirm_password" type="password" name="confirm_password" required placeholder="••••••••" />
+    </div>
+    <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Create Account</button>
+  </form>
+  <div class="form-link">Already have an account? <a href="/login">Sign in</a></div>
+</div>
+{% endblock %}

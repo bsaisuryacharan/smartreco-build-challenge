@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Search "{{ query }}" — SmartReco{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1 class="page-title">
+    {% if query %}Results for "{{ query }}"{% else %}Search{% endif %}
+  </h1>
+  <span style="color:var(--text-muted);font-size:.875rem">{{ products|length }} results</span>
+</div>
+
+{% if products %}
+  <div class="product-grid">
+    {% for product in products %}
+      <div class="card" data-product-id="{{ product.id }}" data-category="{{ product.category }}">
+        {% if product.thumbnail_url %}
+          <img class="card-thumb" src="{{ product.thumbnail_url }}" alt="{{ product.title }}" loading="lazy" />
+        {% else %}
+          <div class="card-thumb">📚</div>
+        {% endif %}
+        <div class="card-body">
+          <div class="card-title">{{ product.title }}</div>
+          <div class="card-desc">{{ product.description }}</div>
+          <span class="badge">{{ product.category }}</span>
+        </div>
+        <div class="card-footer">
+          <span class="price">${{ "%.2f"|format(product.price) }}</span>
+          <a class="btn btn-primary btn-sm" href="/product/{{ product.id }}">View</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% elif query %}
+  <div class="empty-state">
+    <div class="empty-state-icon">🔍</div>
+    <p>No results for "<strong>{{ query }}</strong>". Try a different keyword.</p>
+  </div>
+{% else %}
+  <div class="empty-state">
+    <div class="empty-state-icon">🔍</div>
+    <p>Enter a search query above to find courses.</p>
+  </div>
+{% endif %}
+{% endblock %}
