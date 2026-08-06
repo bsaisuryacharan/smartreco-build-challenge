@@ -49,9 +49,8 @@ def catalog_index(
                 rec_products = []
 
     return templates.TemplateResponse(
-        "catalog/index.html",
+        request, "catalog/index.html",
         {
-            "request": request,
             "current_user": current_user,
             "products": products,
             "page": page,
@@ -96,9 +95,8 @@ def product_detail(
                 rec_products = []
 
     return templates.TemplateResponse(
-        "catalog/product.html",
+        request, "catalog/product.html",
         {
-            "request": request,
             "current_user": current_user,
             "product": product,
             "latest_rec": latest_rec,
@@ -144,11 +142,6 @@ def search(
             )
 
     return templates.TemplateResponse(
-        "catalog/search.html",
-        {
-            "request": request,
-            "current_user": current_user,
-            "products": products,
-            "query": q,
-        },
+        request, "catalog/search.html",
+        {"current_user": current_user, "products": products, "query": q},
     )

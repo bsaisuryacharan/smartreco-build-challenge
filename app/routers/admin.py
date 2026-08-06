@@ -19,13 +19,8 @@ def admin_home(
 ):
     products = db.query(Product).order_by(Product.id.desc()).all()
     return templates.TemplateResponse(
-        "admin/products.html",
-        {
-            "request": request,
-            "current_user": current_user,
-            "products": products,
-            "editing": None,
-        },
+        request, "admin/products.html",
+        {"current_user": current_user, "products": products, "editing": None},
     )
 
 
@@ -37,14 +32,8 @@ def new_product_form(
 ):
     products = db.query(Product).order_by(Product.id.desc()).all()
     return templates.TemplateResponse(
-        "admin/products.html",
-        {
-            "request": request,
-            "current_user": current_user,
-            "products": products,
-            "editing": None,
-            "show_add_form": True,
-        },
+        request, "admin/products.html",
+        {"current_user": current_user, "products": products, "editing": None, "show_add_form": True},
     )
 
 
@@ -92,13 +81,8 @@ def edit_product_form(
         return RedirectResponse(url="/admin/", status_code=302)
     products = db.query(Product).order_by(Product.id.desc()).all()
     return templates.TemplateResponse(
-        "admin/products.html",
-        {
-            "request": request,
-            "current_user": current_user,
-            "products": products,
-            "editing": product,
-        },
+        request, "admin/products.html",
+        {"current_user": current_user, "products": products, "editing": product},
     )
 
 
